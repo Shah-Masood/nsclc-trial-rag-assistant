@@ -167,30 +167,6 @@ Speculative/future-event question detector to close the remaining FN.
 Tech stack
 LayerToolsData ingestionrequests, biopython.Entrez, ClinicalTrials.gov v2 API, PubMed E-utilities, PMC OAProcessingpandas, pyarrow (Parquet)Embeddingssentence-transformers, pritamdeka/S-PubMedBert-MS-MARCOVector searchfaiss-cpu (IndexFlatIP)Generationanthropic SDK, Claude SonnetUIstreamlitConfigurationpython-dotenv, argparseProgress / observabilitytqdm, custom sanity stats
 
-Project layout
-.
-├── 01_ingestData.py            # CT.gov + PubMed ingestion -> chunks.parquet
-├── 02_embedIndex.py            # Sub-chunk + embed + FAISS index
-├── 03_generateRag.py           # Retrieve + Claude generation + refusal guards
-├── 04_evaluate.py              # Eval harness over hand-labeled JSONL
-├── 05_streamlit_app.py         # Web UI
-├── requirements.txt
-├── .env                        # NCBI + Anthropic keys (gitignored)
-└── data/
-    ├── raw/
-    │   ├── clinicaltrials/
-    │   └── pubmed/
-    │       └── by_trial/       # per-NCT resume cache
-    ├── processed/
-    │   ├── chunks.parquet
-    │   ├── embedded_chunks.parquet
-    │   ├── embeddings.npy
-    │   └── faiss.index
-    └── eval/
-        ├── eval_set.jsonl
-        ├── results_<config>_<ts>.jsonl
-        └── summary_<config>_<ts>.json
-
 Acknowledgments
 
 ClinicalTrials.gov for the open v2 API and JATS-format registry data.
