@@ -310,3 +310,7 @@ Sidebar exposes all retrieval and Claude knobs (top-k, fetch-k, min similarity, 
 ## License
 
 MIT.
+
+## Final Result
+
+<img width="1919" height="934" alt="image" src="https://github.com/user-attachments/assets/b0de0774-2c1c-4754-a48c-492ccc5208f3" />
