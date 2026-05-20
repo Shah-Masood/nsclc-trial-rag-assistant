@@ -10,28 +10,6 @@ Evaluated on a hand-labeled 20-question test set covering biomarker eligibility,
 MetricValueLexical citation faithfulness0.994Hit@5 (labeled retrieval questions)1.000Recall@50.917Recall@101.000Mean Reciprocal Rank (MRR)1.000Refusal correctness accuracy0.950Mean citations per answer11.2False-positive refusals0False-negative answers1Hallucinated NCT identifiers1 / ~168 cited (0.6%)Hallucinated PMIDs0
 Across ~168 total citations produced over 20 questions, exactly one referenced an NCT identifier not present in the retrieved chunks — surfaced and documented by the eval framework. The patient-advice pre-flight guard handled all three patient-specific questions deterministically in under 1 second each, with zero API spend.
 
-Architecture
-ClinicalTrials.gov v2 API ──┐
-                            ├─►  01_ingestData.py  ──►  data/processed/chunks.parquet
-PubMed E-utilities API   ───┘                              │
-                                                           ▼
-                                              02_embedIndex.py
-                                              (PubMedBERT + FAISS)
-                                                           │
-                                                           ▼
-                                       data/processed/{embedded_chunks.parquet,
-                                                       embeddings.npy,
-                                                       faiss.index}
-                                                           │
-            ┌──────────────────────────────────────────────┤
-            ▼                                              ▼
-   05_streamlit_app.py                            03_generateRag.py
-   (web UI, clickable                             (retrieval + generation
-    citations)                                     + refusal gates)
-                                                           │
-                                                           ▼
-                                                   04_evaluate.py
-                                                   (eval harness)
 Pipeline summary:
 
 Ingest ~800 NSCLC immunotherapy/targeted-therapy trials from ClinicalTrials.gov v2 and their linked PubMed publications.
@@ -219,3 +197,6 @@ ClinicalTrials.gov for the open v2 API and JATS-format registry data.
 NCBI E-utilities and PubMed Central for free programmatic access to biomedical literature.
 Prithivida Deka et al. for the S-PubMedBert-MS-MARCO model on HuggingFace.
 Anthropic for Claude Sonnet and the API access that made the generation layer practical.
+
+<img width="1919" height="934" alt="image" src="https://github.com/user-attachments/assets/1393c58a-1a39-4d32-b4c7-2b82a481b8ed" />
+
