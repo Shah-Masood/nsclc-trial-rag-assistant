@@ -216,3 +216,20 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Generated pipeline data
+data/
+
+# Large/generated ML artifacts
+*.parquet
+*.npy
+*.index
+*.faiss
+
+# Optional generated eval/result outputs
+data/eval/
+data/raw/
+data/processed/
+
+# Keep example env files trackable
+!.env.example
